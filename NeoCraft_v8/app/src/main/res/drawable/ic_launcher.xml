@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Green background (grass) -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#5ea82e"/>
+        </shape>
+    </item>
+    <!-- Dirt brown bottom half -->
+    <item android:top="50dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#8b5e34"/>
+        </shape>
+    </item>
+    <!-- Top green strip -->
+    <item android:bottom="80dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#4d9224"/>
+        </shape>
+    </item>
+    <!-- "N" letter for NeoCraft -->
+    <item>
+        <bitmap android:gravity="center"/>
+    </item>
+</layer-list>

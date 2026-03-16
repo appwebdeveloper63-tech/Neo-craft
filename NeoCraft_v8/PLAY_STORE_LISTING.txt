@@ -1,0 +1,58 @@
+========================================================
+NEO CRAFT — PLAY STORE LISTING COPY
+========================================================
+
+APP NAME (30 chars max)
+-----------------------
+Neo Craft
+
+SHORT DESCRIPTION (80 chars max)
+----------------------------------
+Mine, build and explore in an infinite 3D voxel world.
+
+FULL DESCRIPTION (4000 chars max)
+-----------------------------------
+Dig deep, build high, and explore forever in Neo Craft — an infinite 3D voxel sandbox where every block is yours to break, place, and reshape.
+
+Start on a procedurally generated world full of rolling hills, sandy beaches, towering mountains, and snow-capped peaks. No two worlds are ever the same.
+
+🪨 MINE & CRAFT
+Dig through layers of stone to find hidden ore veins deep underground. Coal near the surface, iron in the mid-layers, and rare diamonds waiting in the darkest depths.
+
+🌿 INFINITE EXPLORATION
+Venture across deserts, forests, and frozen highlands. Every biome has its own terrain, materials, and secrets waiting to be uncovered.
+
+🏗️ BUILD ANYTHING
+Stack grass, dirt, stone, planks, cobblestone, bricks, and glass to construct shelters, towers, or anything you can imagine. The only limit is how far you want to dig.
+
+🌊 LIVING WORLD
+Watch animated water flow and shimmer as the sun's light catches every wave. Trees dot the landscape, ores glitter underground, and fog rolls in at the horizon.
+
+📱 MOBILE-FIRST CONTROLS
+Built from the ground up for touchscreen play. Dual virtual joystick, intuitive look controls, and one-tap build buttons — all optimised for phones and tablets.
+
+Features:
+• Infinite procedural voxel terrain
+• Multiple biomes (forest, desert, snowy highlands)
+• Hold-to-break with realistic block hardness
+• Animated water with wave physics
+• 9-slot hotbar with 18+ block types including ores
+• Jump, sprint, and fly mode
+• Smooth 60 FPS on modern Android devices
+• No internet required — play anywhere, anytime
+
+CATEGORY
+---------
+Games > Arcade
+
+CONTENT RATING
+--------------
+Everyone (E) — No violence, no scary content, no in-app purchases
+
+TAGS (for discoverability)
+----------------------------
+voxel, sandbox, building, mining, craft, blocks, survival, 3d, pixel, world builder
+
+CONTACT EMAIL (replace with yours)
+------------------------------------
+support@neocraft.game

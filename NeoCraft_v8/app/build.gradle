@@ -1,0 +1,84 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    // Add Google Services for Firebase (uncomment when you add google-services.json)
+    // id 'com.google.gms.google-services'
+}
+
+android {
+    namespace 'com.neocraft.game'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.neocraft.game"
+        minSdk 21
+        targetSdk 34
+        versionCode 8
+        versionName "8.0.0"
+
+        // ── API Keys (injected from local.properties — NEVER commit those) ──
+        // Create a file named local.properties in the project root and add:
+        //   GEMINI_API_KEY=your_key_here
+        //   OPENAI_API_KEY=your_key_here
+        //   FIREBASE_API_KEY=your_key_here
+        //   FIREBASE_PROJECT_ID=your_project_id
+        //
+        def localProps = new Properties()
+        def localPropsFile = rootProject.file('local.properties')
+        if (localPropsFile.exists()) localProps.load(localPropsFile.newDataInputStream())
+
+        buildConfigField "String", "GEMINI_API_KEY",       "\"${localProps.getProperty('GEMINI_API_KEY', '')}\""
+        buildConfigField "String", "OPENAI_API_KEY",       "\"${localProps.getProperty('OPENAI_API_KEY', '')}\""
+        buildConfigField "String", "FIREBASE_API_KEY",     "\"${localProps.getProperty('FIREBASE_API_KEY', '')}\""
+        buildConfigField "String", "FIREBASE_PROJECT_ID",  "\"${localProps.getProperty('FIREBASE_PROJECT_ID', '')}\""
+    }
+
+    signingConfigs {
+        release {
+            // storeFile     file("neocraft-release-key.jks")
+            // storePassword System.getenv("KEYSTORE_PASSWORD") ?: ""
+            // keyAlias      "neocraft"
+            // keyPassword   System.getenv("KEY_PASSWORD") ?: ""
+        }
+    }
+
+    buildTypes {
+        debug {
+            applicationIdSuffix ".debug"
+            versionNameSuffix  "-debug"
+            debuggable true
+        }
+        release {
+            minifyEnabled    true
+            shrinkResources  true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            // signingConfig signingConfigs.release
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions { jvmTarget = '17' }
+    buildFeatures { buildConfig true }
+    packaging { resources { excludes += '/META-INF/{AL2.0,LGPL2.1}' } }
+    bundle {
+        language { enableSplit = false }
+        density   { enableSplit = true  }
+        abi       { enableSplit = true  }
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3'
+    // OkHttp for reliable AI API calls (optional — uses HttpURLConnection by default)
+    // implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+
+    // Firebase (add google-services.json and uncomment when ready)
+    // implementation platform('com.google.firebase:firebase-bom:32.7.0')
+    // implementation 'com.google.firebase:firebase-auth-ktx'
+    // implementation 'com.google.firebase:firebase-firestore-ktx'
+}
