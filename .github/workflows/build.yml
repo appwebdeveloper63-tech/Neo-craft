@@ -23,23 +23,47 @@ jobs:
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
 
+      - name: Find project folder
+        run: |
+          echo "=== Root folder contents ==="
+          ls -la
+          echo "=== Finding gradlew ==="
+          find . -name "gradlew" 2>/dev/null
+          find . -name "build.gradle" 2>/dev/null | head -5
+
+      - name: Set project directory
+        run: |
+          if [ -f "gradlew" ]; then
+            echo "PROJECT_DIR=." >> $GITHUB_ENV
+          elif [ -f "NeoCraft_v8/gradlew" ]; then
+            echo "PROJECT_DIR=NeoCraft_v8" >> $GITHUB_ENV
+          elif [ -f "NeoCraft_v7/gradlew" ]; then
+            echo "PROJECT_DIR=NeoCraft_v7" >> $GITHUB_ENV
+          else
+            FOUND=$(find . -name "gradlew" | head -1 | xargs dirname)
+            echo "PROJECT_DIR=$FOUND" >> $GITHUB_ENV
+          fi
+
       - name: Create local.properties
         run: |
-          echo "sdk.dir=$ANDROID_SDK_ROOT" > local.properties
-          echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" >> local.properties
-          echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> local.properties
-          echo "FIREBASE_API_KEY=${{ secrets.FIREBASE_API_KEY }}" >> local.properties
-          echo "FIREBASE_PROJECT_ID=${{ secrets.FIREBASE_PROJECT_ID }}" >> local.properties
+          echo "sdk.dir=$ANDROID_SDK_ROOT" > $PROJECT_DIR/local.properties
+          echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" >> $PROJECT_DIR/local.properties
+          echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> $PROJECT_DIR/local.properties
+          echo "FIREBASE_API_KEY=${{ secrets.FIREBASE_API_KEY }}" >> $PROJECT_DIR/local.properties
+          echo "FIREBASE_PROJECT_ID=${{ secrets.FIREBASE_PROJECT_ID }}" >> $PROJECT_DIR/local.properties
 
       - name: Make gradlew executable
-        run: chmod +x gradlew
+        run: chmod +x $PROJECT_DIR/gradlew
 
       - name: Build Debug APK
-        run: ./gradlew assembleDebug --no-daemon
+        run: |
+          cd $PROJECT_DIR
+          ./gradlew assembleDebug --no-daemon --stacktrace
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: NeoCraft-APK
-          path: app/build/outputs/apk/debug/app-debug.apk
+          path: |
+            **/app/build/outputs/apk/debug/app-debug.apk
           retention-days: 30
